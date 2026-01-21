@@ -3,14 +3,17 @@ FROM node:24-alpine AS base
 # Set args
 ARG PORT=8080
 
+# Set runtime args
+ARG BASE_URI=http://host.docker.internal:3000
+
 # 1. Rebuild the source code only when needed
 FROM base AS builder
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 RUN corepack enable
 
-ARG NEXT_PUBLIC_BASE_URI=http://localhost:8080
-ENV NEXT_PUBLIC_BASE_URI=${NEXT_PUBLIC_BASE_URI}
+# Set build args
+ARG NEXT_PUBLIC_BASE_URI=http://localhost:3000
 
 # Set working directory
 WORKDIR /app
@@ -33,8 +36,11 @@ FROM base AS runner
 WORKDIR /app
 
 ENV NODE_ENV=production
+
 # Uncomment the following line in case you want to disable telemetry during runtime.
 ENV NEXT_TELEMETRY_DISABLED=1
+
+ENV BASE_URI=$BASE_URI
 
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs

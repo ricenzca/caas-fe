@@ -54,7 +54,6 @@ jobs:
           image: ${{ env.CONTAINER_IMAGE }}
           environment-variables: |
             BASE_URI=${{ secrets.BASE_URI }}
-            NEXT_PUBLIC_BASE_URI=${{ secrets.NEXT_PUBLIC_BASE_URI }}
 
       - name: Deploy Amazon ECS task definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@v2
