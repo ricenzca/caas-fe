@@ -8,7 +8,7 @@ on:
 
 env:
   AWS_REGION: ap-southeast-1
-  ECS_SERVICE: ecs-service-fe
+  ECS_SERVICE: ecs-service-caas-fe
   ECS_CLUSTER: ecs-cicd-ecs-cluster
   ECS_TASK_DEFINITION: .aws/td.json
   CONTAINER_IMAGE: docker.io/${{ secrets.DOCKER_HUB_USERNAME }}/${{ github.event.repository.name }}:main
@@ -22,7 +22,7 @@ jobs:
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
-    if: ${{github.event.workflow_run.conclusion == 'success'}} || ${{ github.event_name == 'workflow_dispatch' }}
+    if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch' }}
     permissions:
       packages: write
       contents: read
@@ -40,7 +40,7 @@ jobs:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v5.1.1
         with:
-          role-to-assume: ${{ secrets.AWS_ROLE_ARN}}
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
           aws-region: ${{ env.AWS_REGION }}
           mask-aws-account-id: true
           role-session-name: ${{ github.run_id }}
