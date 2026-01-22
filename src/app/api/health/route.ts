@@ -1,10 +1,12 @@
 import { NextResponse } from "next/server"
 
 export async function GET() {
-    const res = {
+    const body = {
         status: 'ok',
         timestamp: new Date().toISOString()
     }
-
-    return NextResponse.json(res)
+    const options = {
+        status: 200
+    }
+    return NextResponse.json(body, options)
 }  
