@@ -54,7 +54,7 @@ jobs:
           image: ${{ env.CONTAINER_IMAGE }}
           environment-variables: |
             BASE_URI=${{ secrets.BASE_URI }}
-            PORT=${{ var.CONTAINER_PORT}}
+            PORT=${{ vars.CONTAINER_PORT }}
 
       - name: Deploy Amazon ECS task definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@v2
