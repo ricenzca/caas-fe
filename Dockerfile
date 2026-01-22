@@ -1,11 +1,5 @@
 FROM node:24-alpine AS base
 
-# Set args
-ARG PORT=8080
-
-# Set runtime args
-ARG BASE_URI=http://host.docker.internal:3000
-
 # 1. Rebuild the source code only when needed
 FROM base AS builder
 ENV PNPM_HOME="/pnpm"
@@ -40,22 +34,19 @@ ENV NODE_ENV=production
 # Uncomment the following line in case you want to disable telemetry during runtime.
 ENV NEXT_TELEMETRY_DISABLED=1
 
-ENV BASE_URI=$BASE_URI
+ENV BASE_URI=http://host.docker.internal:3000
 
-# RUN addgroup --system --gid 1001 nodejs && \
-#     adduser --system --uid 1001 --ingroup nodejs --disabled-password --no-create-home nextjs
+RUN addgroup --system --gid 1001 nodejs && \
+    adduser --system --uid 1001 --ingroup nodejs --disabled-password --no-create-home nextjs
 
 # Automatically leverage output traces to reduce image size
 # https://nextjs.org/docs/advanced-features/output-file-tracing
-# COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
-# COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
-COPY --from=builder /app/.next/standalone ./
-COPY --from=builder /app/.next/static ./.next/static
+USER nextjs
 
-# USER nextjs
-
-ENV PORT=$PORT
+ENV PORT=4000
 ENV HOSTNAME="0.0.0.0"
 
 EXPOSE $PORT
