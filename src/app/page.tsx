@@ -9,7 +9,9 @@ export default async function Home() {
     <div className="flex min-h-screen items-center justify-center bg-white font-sans">
       <main className="flex min-h-screen w-full flex-col items-center justify-between px-16">
         <SearchFilter>
-          <Cards flightPlans={flightPlans} />
+          {flightPlans instanceof Error ?
+            <p>{flightPlans.message}</p>
+            : <Cards flightPlans={flightPlans} />}
         </SearchFilter>
       </main >
     </div >
