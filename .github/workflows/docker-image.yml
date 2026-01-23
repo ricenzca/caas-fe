@@ -33,4 +33,3 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           build-args: |
             NEXT_PUBLIC_BASE_URI=${{ secrets.NEXT_PUBLIC_BASE_URI }}
-            BASE_URI=${{ secrets.BASE_URI }}
