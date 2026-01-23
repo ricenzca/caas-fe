@@ -35,3 +35,6 @@ README.md
 LICENSE
 tests/
 coverage/
+
+# aws
+.aws
