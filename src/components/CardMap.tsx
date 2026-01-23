@@ -9,7 +9,7 @@ export default function CardMap({ id }: CardMapProps) {
     const { flightPlanDetails, isLoading, error } = useFlightPlanDetails(id);
 
     const positions: LatLngExpression[] = []
-    if (flightPlanDetails.wayPoints?.length > 0) {
+    if (flightPlanDetails?.wayPoints?.length > 0) {
         flightPlanDetails.wayPoints.forEach((wayPoint) => {
             Object.values(wayPoint).forEach((value) => {
                 positions.push([value.lat, value.lng])
