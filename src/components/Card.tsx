@@ -18,7 +18,7 @@ export default function Card({ id, callSign, departure, arrival }: CardProps) {
             <div id={id} className="border border-black rounded-md text-black px-4 py-4 my-2 grid grid-cols-3 hover:bg-gray-100"
                 onClick={() => { setShowMap(prevState => !prevState) }}>
                 <div className="text-blue-900 font-bold text-xl">{callSign}</div>
-                <div className="grid grid-cols-3 px-4 text-center">
+                <div className="grid grid-cols-3 px-0 min-w-30 text-center sm:px-2 md:px-4">
                     <div>{departure}</div>
                     <div>{'->'}</div>
                     <div>{arrival}</div>

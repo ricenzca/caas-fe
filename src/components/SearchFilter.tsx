@@ -24,7 +24,7 @@ export default function SearchFilter({ children }: SearchFilterProps) {
                     onChange={(e) => setCallSign(e.target.value)}
                 />
             </form>
-            <div className='flex justify-center w-1/2'>
+            <div className='flex justify-center w-9/10 border border-black md:w-3/4 lg:w-1/2'>
                 {!callSign ? children :
                     isLoading ? <p>Loading...</p> :
                         error ? <p>Failed to load</p> :

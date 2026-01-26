@@ -7,7 +7,7 @@ export default async function Home() {
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-white font-sans">
-      <main className="flex min-h-screen w-full flex-col items-center justify-between px-16">
+      <main className="flex min-h-screen w-full flex-col items-center justify-between">
         <SearchFilter>
           {flightPlans instanceof Error ?
             <p>{flightPlans.message}</p>
