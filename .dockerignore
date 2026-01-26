@@ -1,40 +1,61 @@
-# Dependency directories
-node_modules
-**/node_modules/
-.pnpm-debug.log*
+# # Dependency directories
+# node_modules
+# **/node_modules/
+# .pnpm-debug.log*
 
-# Next.js build output
-.next/
-out/
-build/
+# # Next.js build output
+# .next/
+# out/
+# build/
 
-# IDE and System files
-.vscode
+# # IDE and System files
+# .vscode
 
-# Git and CI/CD
-.git
-.gitignore
-.github
+# # Git and CI/CD
+# .git
+# .gitignore
+# .github
 
-# Docker specific
-Dockerfile
-.dockerignore
+# # Docker specific
+# Dockerfile
+# .dockerignore
 
-# Environment files (never include secrets in the image)
-.env
-.env*.local
+# # Environment files (never include secrets in the image)
+# .env
+# .env*.local
 
-# Logs and debug files
-npm-debug.log*
-pnpm-debug.log*
-logs
-*.log
+# # Logs and debug files
+# npm-debug.log*
+# pnpm-debug.log*
+# logs
+# *.log
 
-# Documentation and tests
-README.md
-LICENSE
-tests/
-coverage/
+# # Documentation and tests
+# README.md
+# LICENSE
+# tests/
+# coverage/
 
-# aws
-.aws
+# # aws
+# .aws
+
+# # Test files and directories
+# **/__tests__
+# **/*.test.*
+# **/*.spec.*
+# coverage
+# **/__mocks__
+# jest.*
+
+# Ignore everything at the root level
+*
+# Allow specific directories/files
+!public
+!src
+!eslint.config.mjs
+!next-env.d.ts
+!next.config.ts
+!package.json
+!pnpm-lock.yaml
+!postcss.config.mjs
+!tsconfig.json
