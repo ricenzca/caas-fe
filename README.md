@@ -1,6 +1,8 @@
 ## Description
 
-Frontend application built with NextJS
+Frontend application built with NextJS.
+
+[Backend application](https://github.com/ricenzca/caas-be)
 
 ## Project setup
 
