@@ -2,7 +2,11 @@
 
 Frontend application built with NextJS.
 
-[Backend application](https://github.com/ricenzca/caas-be)
+Works with [backend app](https://github.com/ricenzca/caas-be).
+
+## Cloud architecture
+
+![cloud architecture diagram](readme-image.png)
 
 ## Project setup
 
