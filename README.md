@@ -1,36 +1,51 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## Description
 
-## Getting Started
+Frontend application built with NextJS
 
-First, run the development server:
+## Project setup
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+### Docker
+
+1. Clone repo and create .env file in the repo root directory with the following:
+
+```
+BASE_URI=http://host.docker.internal:{backend-app-port}
+HOSTNAME=0.0.0.0
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Build docker image
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+docker build --build-arg NEXT_PUBLIC_BASE_URI=http://localhost:4000 -t caas-frontend:1 .
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+3. Create and run docker container using image
 
-## Learn More
+```bash
+docker run -d --env-file .env -p 4000:4000 --name=caas-fe caas-frontend:1
+```
 
-To learn more about Next.js, take a look at the following resources:
+4. Access application at `http://localhost:4000`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### pnpm (or npm)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Clone repo and create .env file in the repo root directory with the following:
 
-## Deploy on Vercel
+```
+BASE_URI=http://localhost:{backend-app-port}
+NEXT_PUBLIC_BASE_URI=http://localhost:4000
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+2. Install dependencies
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+pnpm install
+```
+
+3. Run the project locally
+
+```bash
+pnpm run dev --port 4000
+```
+
+4. Access application at `http://localhost:4000`
